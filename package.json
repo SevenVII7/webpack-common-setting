@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "wp": "rm -rf ./dist && webpack",
-    "wwp": "webpack serve",
+    "wp": "webpack serve",
+    "build": "rm -rf ./dist && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
