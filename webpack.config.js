@@ -1,4 +1,6 @@
-var path = require('path')
+const path = require('path')
+const webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -9,5 +11,16 @@ module.exports = {
     filename: '[name]_[hash].js',
     chunkFilename: 'chunk_[hash].js',
     assetModuleFilename: '[name]_[hash]'
-  }
+  },
+  devServer: {
+    static: './dist',
+    hot: true,
+  },
+  plugins: [
+    // Plugin for hot module replacement
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    })
+  ],
 }

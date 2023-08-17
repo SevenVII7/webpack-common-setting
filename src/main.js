@@ -4,6 +4,7 @@
 async function importSomething() {
   await setTimeout(() => {
     const { obj1 } = import('./js/someExport');
+    console.log(obj1)
   }, 1000)
 }
 
