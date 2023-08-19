@@ -1,4 +1,4 @@
-import './assets/scss/main.scss';
+import './assets/scss/about.scss';
 
 import { obj1 } from './js/someExport'
 console.log(obj1)
@@ -11,3 +11,6 @@ console.log(obj1)
 // }
 
 // importSomething()
+
+
+// import pic from './assets/img/pic.jpg'
