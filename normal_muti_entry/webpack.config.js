@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: 'development',
   entry: {
-    // 雙模塊 main & about, 不同進入點
-    main: "./src/main",
+    // 雙模塊 index & about, 不同進入點
+    index: "./src/index",
 		about: "./src/about"
   }, // 在 index 檔案後的 .js 副檔名是可選的
   output: {
@@ -71,13 +71,13 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // css
     new MiniCssExtractPlugin({
-      filename: './css/[name].css'
+      filename: './css/[name].[hash].css'
     }),
     // html
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
-      chunks: ['main']
+      chunks: ['index']
     }),
     new HtmlWebpackPlugin({
       template: './public/about.html',
