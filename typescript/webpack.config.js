@@ -5,17 +5,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: 'development',
-  entry: {
-    // 雙模塊 index & about, 不同進入點
-    index: "./src/index",
-		about: "./src/about"
-  }, // 在 index 檔案後的 .js 副檔名是可選的
+  entry: ['./src/main'],
   output: {
     path: path.join(__dirname, 'dist'),
     asyncChunks: true,
     filename: '[name].[hash].js',
     chunkFilename: '[hash].js',
     assetModuleFilename: '[name].[hash][ext]'
+  },
+  resolve : {
+    extensions : ['.js', '.ts']
   },
   // 給 webpack-dev-server 吃的
   devServer: {
@@ -24,28 +23,24 @@ module.exports = {
   },
   module: {
     rules: [
+      { 
+        test: /\.ts$/, 
+        use: 'ts-loader',
+        include: path.resolve(__dirname, 'src')
+      },
       // webpack5 圖片打包
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[hash][ext]'
+          filename: 'images/[hash][ext]'
         }
       },
-      // ~ webpack4 圖片打包
-      // {
-      //   test: /\.(jpe?g|png|gif|svg)$/i,
-      //   loader:'file-loader',
-      //   options: {
-      //     name: '[name].[hash].[ext]',
-      //     outputPath: 'images',
-      //   },
-      // },
       {
         test: /\.txt$/i,
-        type: 'asset/resource',
+        type: 'asset/source',
         generator: {
-          filename: 'assets/file/[name][ext]'
+          filename: 'assets/[hash][ext]'
         }
       },
       // 解析 scss, sass, css 打包
@@ -60,23 +55,6 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
-        options: {
-          // esModule: false // 用 file-loader 解析 html 裡的圖片要用設定這個
-          sources: {
-            list: [
-              {
-                tag: "img",
-                attribute: "src",
-                type: "src",
-              },
-              {
-                tag: "a",
-                attribute: "href",
-                type: "src",
-              },
-            ],
-          },
-        },
       },
     ]
   },
@@ -91,12 +69,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
-      chunks: ['index']
-    }),
-    new HtmlWebpackPlugin({
-      template: './public/about.html',
-      filename: 'about.html',
-      chunks: ['about']
     }),
   ],
 }
