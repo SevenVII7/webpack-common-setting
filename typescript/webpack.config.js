@@ -33,14 +33,14 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[hash][ext]'
+          filename: 'assets/images/[hash][ext]'
         }
       },
       {
         test: /\.txt$/i,
-        type: 'asset/source',
+        type: 'asset/resource',
         generator: {
-          filename: 'assets/[hash][ext]'
+          filename: 'assets/file/[name][ext]'
         }
       },
       // 解析 scss, sass, css 打包
@@ -55,6 +55,22 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
+        options: {
+          sources: {
+            list: [
+              {
+                tag: "img",
+                attribute: "src",
+                type: "src",
+              },
+              {
+                tag: "a",
+                attribute: "href",
+                type: "src",
+              },
+            ],
+          },
+        },
       },
     ]
   },
