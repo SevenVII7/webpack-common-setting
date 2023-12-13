@@ -85,7 +85,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // css
     new MiniCssExtractPlugin({
-      filename: './css/[name].[hash].css'
+      filename: './assets/css/[name].[hash].css'
     }),
     // html
     new HtmlWebpackPlugin({
