@@ -1,6 +1,4 @@
 import { Ref, ref } from 'vue'
+import type { SomeType } from '@/types/ExampleType'
 
-type SomeType = {
-  someString: string
-}
 export const obj1: Ref<SomeType> = ref({ someString: 'someString' })
