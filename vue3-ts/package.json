@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve",
-    "build": "vue-tsc --noEmit && rm -rf ./dist && webpack",
+    "build": "vue-tsc --noEmit && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@vue/compiler-sfc": "^3.3.11",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",

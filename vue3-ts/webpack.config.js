@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require("webpack")
 const { VueLoaderPlugin } = require('vue-loader')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
@@ -88,6 +89,8 @@ module.exports = {
   plugins: [
     // Plugin for HMR
     new webpack.HotModuleReplacementPlugin(),
+    // 每次打包清除dist
+    new CleanWebpackPlugin(),
     // vue
     new VueLoaderPlugin(),
     // css
