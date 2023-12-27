@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -78,6 +79,12 @@ module.exports = {
   plugins: [
     // Plugin for HMR
     new webpack.HotModuleReplacementPlugin(),
+    new ESLintPlugin({
+      emitError: true,
+      emitWarning: true,
+      failOnError: true,
+      extensions: ['ts', 'js']
+    }),
     // 每次打包清除dist
     new CleanWebpackPlugin(),
     // css
