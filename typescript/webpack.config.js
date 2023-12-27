@@ -1,7 +1,8 @@
 const path = require('path')
-const webpack = require("webpack");
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -13,13 +14,13 @@ module.exports = {
     chunkFilename: '[hash].js',
     assetModuleFilename: '[name].[hash][ext]'
   },
-  resolve : {
-    extensions : ['.js', '.ts']
+  resolve: {
+    extensions: ['.js', '.ts']
   },
   // 給 webpack-dev-server 吃的
   devServer: {
     static: path.join(__dirname, 'dist'),
-    hot: true,
+    hot: true
   },
   module: {
     rules: [
@@ -47,7 +48,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         // MiniCssExtractPlugin 用來生成 css 並在 html 中引入
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
         // style-loader 可以將用到的 css 設定, 用 js 方式插入 <style> 中
         // use: ['style-loader', 'css-loader', 'sass-loader'],
       },
@@ -59,24 +60,26 @@ module.exports = {
           sources: {
             list: [
               {
-                tag: "img",
-                attribute: "src",
-                type: "src",
+                tag: 'img',
+                attribute: 'src',
+                type: 'src'
               },
               {
-                tag: "a",
-                attribute: "href",
-                type: "src",
-              },
-            ],
-          },
-        },
-      },
+                tag: 'a',
+                attribute: 'href',
+                type: 'src'
+              }
+            ]
+          }
+        }
+      }
     ]
   },
   plugins: [
     // Plugin for HMR
     new webpack.HotModuleReplacementPlugin(),
+    // 每次打包清除dist
+    new CleanWebpackPlugin(),
     // css
     new MiniCssExtractPlugin({
       filename: './assets/css/[name].[hash].css'
@@ -84,7 +87,7 @@ module.exports = {
     // html
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: 'index.html',
-    }),
-  ],
+      filename: 'index.html'
+    })
+  ]
 }

@@ -5,18 +5,20 @@
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve",
-    "build": "tsc --noEmit && rm -rf ./dist && webpack",
+    "build": "tsc --noEmit && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
     "css-loader": "^6.8.1",
+    "eslint": "^8.56.0",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "node-sass": "npm:sass@^1.69.5",
     "raw-loader": "^4.0.2",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
@@ -26,6 +28,13 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-webpack-plugin": "^4.0.1",
+    "node-sass": "^9.0.0",
+    "prettier": "^3.1.1",
     "typescript": "^5.1.6"
   }
 }
